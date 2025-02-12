@@ -40,7 +40,7 @@ export function SignupForm() {
   
   return (
     <div className="w-full flex justify-center items-center min-h-screen p-4">
-      <Card className="w-full max-w-lg shadow-lg rounded-lg bg-white">
+      <Card className="w-full max-w-lg shadow-lg rounded-lg">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-semibold">Signup Form</CardTitle>
           <CardDescription>
@@ -133,7 +133,7 @@ export function SignupForm() {
   
             <Button
               type="submit"
-              className="w-full hover:bg-blue-700 text-white py-2 rounded-md transition hover:cursor-pointer"
+              className="w-full  py-2 rounded-md transition hover:cursor-pointer"
             >
               Submit
             </Button>

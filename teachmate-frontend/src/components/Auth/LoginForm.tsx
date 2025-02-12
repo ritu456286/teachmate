@@ -6,7 +6,7 @@ import { Switch } from "@/components/ui/switch";
 import {
   Form,
   FormControl,
-  FormDescription,
+  // FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -16,9 +16,9 @@ import { Input } from "@/components/ui/input";
 
 import {
   Card,
-  CardContent,
+  // CardContent,
   CardDescription,
-  CardFooter,
+  // CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -36,10 +36,10 @@ export function LoginForm() {
   function onSubmit(values: LoginSchema) {
     console.log("Login Submitted:", values);
   }
-  
+
   return (
     <div className="w-full flex justify-center items-center min-h-screen p-4">
-      <Card className="w-full max-w-lg shadow-lg rounded-lg bg-white">
+      <Card className="w-full max-w-lg shadow-lg rounded-lg ">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-semibold">Login Form</CardTitle>
           <CardDescription>
@@ -111,7 +111,7 @@ export function LoginForm() {
   
             <Button
               type="submit"
-              className="w-full hover:bg-blue-700 text-white py-2 rounded-md transition hover:cursor-pointer"
+              className="w-full py-2 rounded-md transition hover:cursor-pointer"
             >
               Submit
             </Button>

@@ -1,11 +1,13 @@
-import { ModeToggle } from '@/components/mode-toggle'
+import Navbar from '@/components/Navigation/Navbar'
 
 const LandingPage = () => {
   return (
+    <>
+    <Navbar/>
     <div>
-        <ModeToggle/>
-      <h1>Hello world</h1>
+      Hero Section
     </div>
+    </>
   )
 }
 
