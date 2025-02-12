@@ -3,7 +3,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Routes, Route } from "react-router";
 import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
-
+import SignupPage from './pages/SignupPage';
 
 function App() {
 
@@ -12,7 +12,7 @@ function App() {
     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
     {
       <Routes>
-        <Route path="/" element={<LoginPage/>} />
+        <Route path="/" element={<SignupPage/>} />
       </Routes>
     
     }

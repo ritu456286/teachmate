@@ -1,10 +1,10 @@
 import React from 'react'
-
+import { SignupForm } from '@/components/Auth/SignupForm'
 const SignupPage = () => {
   return (
-    <div>
-      
-    </div>
+     <div className="flex items-center justify-center min-h-screen">
+          <SignupForm />
+        </div>
   )
 }
 

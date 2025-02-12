@@ -23,10 +23,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-export function LoginForm() {
+export function SignupForm() {
   const form = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
+      name: "",
       email: "",
       password: "",
       role: "teacher",
@@ -34,14 +35,14 @@ export function LoginForm() {
   });
 
   function onSubmit(values: LoginSchema) {
-    console.log("Login Submitted:", values);
+    console.log("Signup Submitted:", values);
   }
   
   return (
     <div className="w-full flex justify-center items-center min-h-screen p-4">
       <Card className="w-full max-w-lg shadow-lg rounded-lg bg-white">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-semibold">Login Form</CardTitle>
+          <CardTitle className="text-2xl font-semibold">Signup Form</CardTitle>
           <CardDescription>
             Welcome to Teachmate
           </CardDescription>
@@ -51,6 +52,26 @@ export function LoginForm() {
             onSubmit={form.handleSubmit(onSubmit)}
             className="p-6 md:p-8 space-y-6"
           >
+
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-lg">Full Name</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="xyz"
+                      {...field}
+                      className="h-10"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+  
+
             <FormField
               control={form.control}
               name="email"
@@ -69,6 +90,7 @@ export function LoginForm() {
               )}
             />
   
+           
             <FormField
               control={form.control}
               name="password"
