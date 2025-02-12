@@ -18,10 +18,11 @@ import {
   Card,
   // CardContent,
   CardDescription,
-  // CardFooter,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Link } from "react-router";
 
 export function LoginForm() {
   const form = useForm<LoginSchema>({
@@ -87,7 +88,8 @@ export function LoginForm() {
                 </FormItem>
               )}
             />
-  
+            <div className="flex items-center justify-between">
+
             <FormField
               control={form.control}
               name="role"
@@ -108,7 +110,13 @@ export function LoginForm() {
                 </FormItem>
               )}
             />
-  
+
+            <div>
+              
+              <a href="#" className="text-md text-blue-700 font-semibold hover:underline dark:text-blue-500">Forgot Password?</a>
+            </div>
+            </div>
+
             <Button
               type="submit"
               className="w-full py-2 rounded-md transition hover:cursor-pointer"
@@ -117,6 +125,13 @@ export function LoginForm() {
             </Button>
           </form>
         </Form>
+        <CardFooter>
+        <div className="text-md font-medium text-gray-500 dark:text-gray-300">
+
+          Not registered? <Link to="/signup" className="text-blue-700 hover:underline dark:text-blue-500">Create account</Link>
+          </div>
+        
+        </CardFooter>
       </Card>
     </div>
   );

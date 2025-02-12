@@ -22,6 +22,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Link } from "react-router";
 
 export function SignupForm() {
   const form = useForm<LoginSchema>({
@@ -139,6 +140,12 @@ export function SignupForm() {
             </Button>
           </form>
         </Form>
+        <CardFooter>
+        <div className="text-md font-medium text-gray-500 dark:text-gray-300">
+
+          Already registered? <Link to="/login" className="text-blue-700 hover:underline dark:text-blue-500">Login Here</Link>
+          </div>
+        </CardFooter>
       </Card>
     </div>
   );
