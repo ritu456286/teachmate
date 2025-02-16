@@ -24,7 +24,7 @@ const authService = new AuthService();
  */
 const signup = async (req, res) => {
     try {
-      
+        
         const newUser = await authService.signup(req.body);    
         
         generateToken(newUser._id, res);
@@ -34,6 +34,7 @@ const signup = async (req, res) => {
                 .status(StatusCodes.CREATED)
                 .json(SuccessResponse);    
     } catch (error) {
+       
         ErrorResponse.error = error;
         return res
                 .status(error.statusCode)

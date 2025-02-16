@@ -22,7 +22,7 @@ const authenticateJWT = async (req, res, next) => {
 
 const validateCreateRequest = (schema) => (req, res, next) => {
 
-
+    console.log("Inside middleware")
     const { error } = schema.validate(req.body, { abortEarly: false });
 
     if (error) {

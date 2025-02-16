@@ -19,12 +19,11 @@ export class AuthService {
     async signup(userData){
     
         try {
-
-            const {email, password, fullName, role} = userData; 
-            // if(!email || !password || !fullName || !role){
-            //     throw new AppError("All fields are required!", StatusCodes.BAD_REQUEST);
-            // }
+            
+            const {email, password, role} = userData; 
+        
             const existingUser = await this.userRepo.findByEmail(email);
+           
             if(existingUser){
                 throw new AppError("Email already exists", StatusCodes.CONFLICT);
             }
@@ -34,18 +33,20 @@ export class AuthService {
             
             // Remove role before creating a user (Mongoose sets it automatically)
             delete userData.role;
-            
+        
             let newUser;
             // Store user based on role
 
             if (role === "student") {
+        
                 newUser = await this.studentRepo.create(userData);
+              
             } else if (role === "teacher") {
                 newUser = await this.teacherRepo.create(userData);
             } else {
                 throw new AppError("Invalid role! Must be either 'student' or 'teacher'", StatusCodes.BAD_REQUEST);
             } 
-
+           
             return newUser;
 
         } catch (error) {
