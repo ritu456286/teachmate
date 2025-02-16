@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import bcrypt from "bcrypt";
+// import bcrypt from "bcrypt";
 
 const userSchema = new mongoose.Schema({
     
@@ -20,7 +20,6 @@ const userSchema = new mongoose.Schema({
         trim: true,
         required: [true, "Password is required"],
         minlength: [6, "Password must be at least 6 characters"],
-
     },
     profilePic: {
         type: String,
@@ -29,8 +28,7 @@ const userSchema = new mongoose.Schema({
 
     phone: {
         type: String,
-        default: "",
-        length: 10,
+        default: null,
         trim: true,
         minlength: [10, "Phone number must be at least 10 digits"],
         maxlength: [10, "Phone number cannot exceed 10 digits"],
@@ -42,14 +40,17 @@ const userSchema = new mongoose.Schema({
         required: [true, "Role is required"],
     }
 },
-{timestamps: true});
+{timestamps: true, discriminatorKey: "role"});
 
-userSchema.pre("save", async function (next) {
-    if(!this.isModified("password")) return next();
-    this.password = await  bcrypt.hash(this.password, 10);
-    next();
-})
 
+// //hash password before saving
+// userSchema.pre("save", async function (next) {
+//     if(!this.isModified("password")) return next();
+//     this.password = await  bcrypt.hash(this.password, 10);
+//     next();
+// })
+
+//verify user password
 userSchema.methods.validatePassword = async function(enteredPassword) {
     
     return await bcrypt.compare(enteredPassword, this.password);

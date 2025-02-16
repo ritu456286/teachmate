@@ -20,9 +20,6 @@ export class CrudRepository {
     //RETRIEVE: by id
     async getById(id){
         const response = await this.model.findById(id);
-        if(!response){
-            throw new AppError("Unable to find the resource", StatusCodes.NOT_FOUND);
-        }
         return response;
     }
 
@@ -41,5 +38,8 @@ export class CrudRepository {
         if(!response){
             throw new AppError("Unable to find the resource", StatusCodes.NOT_FOUND);
         }
+        return response;
     }
+
+   
 }

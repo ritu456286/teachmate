@@ -1,9 +1,11 @@
 import {Router} from "express";
 import { AuthController } from "../../controllers/index.js";
+import { AuthMiddleware } from "../../middlewares/auth-middleware.js";
+import { signupSchema } from "../../utils/lib/auth-validator.js";
 const router = Router();
 
 // /api/v1/auth/ : POST signup
-router.post("/signup", AuthController.signup)
+router.post("/signup", AuthMiddleware.validateCreateRequest(signupSchema), AuthController.signup)
 
 // /api/v1/auth/ : POST login
 router.post("/login", AuthController.login)
