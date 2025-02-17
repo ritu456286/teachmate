@@ -3,8 +3,6 @@ import jwt from "jsonwebtoken"
 import { StatusCodes } from "http-status-codes";
 import { AppError } from "../utils/error/app-error.js";
 import bcrypt from "bcryptjs";
-import { generateToken } from "../utils/lib/auth-utils.js";
-
 
 export class AuthService {
    
@@ -47,6 +45,8 @@ export class AuthService {
                 throw new AppError("Invalid role! Must be either 'student' or 'teacher'", StatusCodes.BAD_REQUEST);
             } 
            
+            //remove password from sending if exists
+            delete newUser.password;
             return newUser;
 
         } catch (error) {
@@ -61,8 +61,35 @@ export class AuthService {
     }
 
 
-    async login(){
+    async login(userData){  
+        try {
+            const { email, password, role } = userData;
+           
+            const existingUser = await this.userRepo.findByEmail(email);
+          
+            if(!existingUser){
+                throw new AppError("Email is not registered!", StatusCodes.BAD_REQUEST);
+            }
 
+            const isPasswordValid = await bcrypt.compare(password, existingUser.password);
+            
+            if(!isPasswordValid){
+                throw new AppError("Invalid Credentials", StatusCodes.BAD_REQUEST);
+            }
+
+            delete existingUser.password;
+         
+            return existingUser;
+
+
+        } catch (error) {
+            
+            if (error instanceof AppError) {
+                throw error;
+            }
+
+            throw new AppError("An error occurred while logging in the user", StatusCodes.INTERNAL_SERVER_ERROR);
+        }
     }
 
     async findUserByToken(token){ //token is jwt token

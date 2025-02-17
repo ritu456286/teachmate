@@ -42,10 +42,22 @@ const signup = async (req, res) => {
     }
 }
 
-const login = (req, res) => {
-    const { email, password, role } = req.body;
+const login = async (req, res) => {
+    try {
+        const existingUser = await authService.login(req.body);
+        generateToken(existingUser._id, res);
+        SuccessResponse.data = existingUser;
+        return res
+                .status(StatusCodes.OK)
+                .json(SuccessResponse);
+    } catch (error) {
+        ErrorResponse.error = error;
+        return res
+                .status(error.statusCode)
+                .json(ErrorResponse);
+    }
 
-    // if(!email || )
+
 }
 
 const logout = (req, res) => {

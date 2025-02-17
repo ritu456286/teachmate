@@ -20,9 +20,9 @@ const authenticateJWT = async (req, res, next) => {
     }
 }
 
-const validateCreateRequest = (schema) => (req, res, next) => {
+const validateRequest = (schema) => (req, res, next) => {
 
-    console.log("Inside middleware")
+    // console.log("Inside middleware")
     const { error } = schema.validate(req.body, { abortEarly: false });
 
     if (error) {
@@ -37,5 +37,5 @@ const validateCreateRequest = (schema) => (req, res, next) => {
 
 export const AuthMiddleware = {
     authenticateJWT,
-    validateCreateRequest,
+    validateRequest,
 }

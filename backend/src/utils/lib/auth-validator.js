@@ -20,3 +20,18 @@ export const signupSchema = Joi.object({
         "any.only": "Role must be either 'student' or 'teacher'",
     }),
 });
+
+
+export const loginSchema = Joi.object({
+    email: Joi.string().email().required().messages({
+        "string.empty": "Email is required",
+        "string.email": "Invalid email format",
+    }),
+    password: Joi.string().required().messages({
+        "string.empty": "Password is required",
+    }),
+    role: Joi.string().valid("student", "teacher").required().messages({
+        "string.empty": "Role is required",
+        "any.only": "Role must be either 'student' or 'teacher'",
+    }),
+})

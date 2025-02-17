@@ -9,7 +9,8 @@ export class UserRepository extends CrudRepository{
 
      //FIND BY EMAIL
     async findByEmail(email){
-        const response = await this.model.findOne({email: email}, '-password').exec();
+        const response = await this.model.findOne({ email }).exec();
         return response;
     }
+
 }
